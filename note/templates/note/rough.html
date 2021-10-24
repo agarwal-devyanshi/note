@@ -1,0 +1,39 @@
+<table>
+    <tr>
+        <th>Description</th>
+    </tr>
+    {% for description in object.description %}
+        <td>{{ description }}</td>
+    
+    {% empty %}
+        <h3>No descrription</h3>
+    {% endfor %}
+</table>
+
+<p>{{object.description}}</p>
+
+
+
+for (j = 0; j < td.length; j++) {
+    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        found = true;
+    }
+}
+if (found) {
+    tr[i].style.display = "";
+    found = false;
+} else {
+    tr[i].style.display = "none";
+}
+
+
+
+<ul>
+    {% for description in object.description %}
+        <li> {{ description }} </li>
+        <br>
+    {% empty %}
+        <h3>No descrription</h3>
+    {% endfor %}
+
+</ul>  

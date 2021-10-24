@@ -1,0 +1,12 @@
+<body style="background-color:peachpuff;"></body>
+
+<a href = "{% url 'note:index' %}">Go Back</a>
+<form method="post">{% csrf_token %}
+	
+
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    
+    
+        <input type="submit" value="Confirm">
+    </form>
+    

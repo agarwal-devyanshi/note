@@ -1,0 +1,73 @@
+<html>
+<style>
+    body {
+      background-color:peachpuff;
+    
+    }
+</style>
+
+<body>
+
+
+{% if request.user.is_authenticated %}
+<p>Hello {{request.user}}</p> 
+
+
+<a href = "{% url 'note:logout' %}">Logout</a>
+{% else %}
+<!-- <p>You are not logged in</p> -->
+<a href = "{% url 'note:login' %}">Login</a>
+{% endif %}
+
+<hr>
+  
+<h1>My notes</h1>
+<a href = "{% url 'note:create' %}">Add a note</a>
+<br>
+<br>
+<input id='myInput' onkeyup='searchTable()' type='text' placeholder="Search for a note.." title="Type in a note">
+
+<table id='myTable'>
+    <tr>
+        <th>Notes</th>
+    </tr>
+    {% for NotesModel in object_list %}
+    <tr>
+        <td>{{ NotesModel.title }}</td>
+        <td><a href = "{% url 'note:detail' NotesModel.id %}">View</a></td>
+        <td><a href = "{% url 'note:update' NotesModel.id %}">Update</a></td>
+        <td><a href = "{% url 'note:delete' NotesModel.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+        <h3>No item</h3>
+    {% endfor %}
+</table>
+   
+
+<script>
+function searchTable() {
+    var input, filter, found, table, tr, td, i, j, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+
+</body>
+</html>
